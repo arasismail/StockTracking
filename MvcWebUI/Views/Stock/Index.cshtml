@@ -1,0 +1,56 @@
+﻿@model StockListViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Stok Listesi</h1>
+<br />
+<a class="btn btn-success" href="/Stock/Edit">Stok Ekle</a>
+<br />
+<br />
+<table class="table" id="tblStock">
+    <thead>
+        <tr>
+            <th scope="col">Stok Id</th>
+            <th scope="col">Stok Kodu</th>
+            <th scope="col">Stok Adı</th>
+            <th scope="col">Kdv</th>
+            <th scope="col">Fiyat</th>
+            <th scope="col">Açıklama</th>
+            <th scope="col">Depo Kodu</th>
+            <th scope="col">Depo Adı</th>
+            <th scope="col">Düzenleme Tarihi</th>
+            <th scope="col">Kayıt Yapan Kullanıcının Id</th>
+            <th scope="col">Düzenle</th>
+            <th scope="col">Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var stock in Model.stocks)
+        {
+        <tr>
+            <th scope="row">@stock.StockId</th>
+            <td>@stock.StockCode</td>
+            <td>@stock.StockName</td>
+
+            <td>@stock.Kdv</td>
+            <td>@stock.Price</td>
+            <td>@stock.Detail</td>
+
+            <td>@stock.WarehouseCode</td>
+            <td>@stock.warehouse.WarehouseName</td>
+
+            <td>@stock.CreateDate.ToString("dd/MM/yyyy")</td>
+            <td>@stock.UserId</td>
+            
+
+
+            <td><a class="btn btn-primary" href="/Stock/Edit?id=@stock.StockId">Düzenle</a></td>
+            <td><a class="btn btn-warning" href="/Stock/Delete?id=@stock.StockId">Sil</a></td>
+        </tr>
+        }
+
+    </tbody>
+</table>

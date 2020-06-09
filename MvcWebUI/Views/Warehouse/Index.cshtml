@@ -1,0 +1,41 @@
+﻿@model WarehouseOperationViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h1>Depo Giriş/Çıkış Formu</h1>
+<br />
+@ViewBag.Mesaj
+<br />
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="container">
+
+        <div class="row form-group">
+            @Html.LabelFor(x => x.WarehouseOperation.VoucherNumber, "Fiş Numarası", new { @class = "col-md-2 col-form-label" })
+            @Html.TextBoxFor(x => x.WarehouseOperation.VoucherNumber, null, new { @class = "col-md-6 form-control", type = "number" })
+        </div>
+        <div class="row form-group">
+            @Html.LabelFor(x => x.WarehouseOperation.WarehouseCode, "Depo Adı", new { @class = "col-md-2" })
+            @Html.DropDownListFor(x => x.WarehouseOperation.WarehouseCode, Model.selectListItemsWarehouse, new { @class = "col-md-6 form-control" })
+        </div>
+        <div class="row form-group">
+            @Html.LabelFor(x => x.WarehouseOperation.StockCode, "Stok Adı", new { @class = "col-md-2" })
+            @Html.DropDownListFor(x => x.WarehouseOperation.StockCode, Model.selectListItemsStock, new { @class = "col-md-6 form-control" })
+        </div>
+        <div class="row form-group">
+            @Html.LabelFor(x => x.WarehouseOperation.Quantity, "Giriş/Çıkış Miktarı", new { @class = "col-md-2" })
+            @Html.TextBoxFor(x => x.WarehouseOperation.Quantity, null, new { @class = "col-md-6 form-control", type = "number" })
+        </div>
+
+        <div class="radio">
+            <label> @Html.RadioButtonFor(x => x.WarehouseOperation.OperationType, true) Giriş</label>
+            <label> @Html.RadioButtonFor(x => x.WarehouseOperation.OperationType, false) Çıkış</label>
+        </div>
+        <br />
+        <div class="form-group row">
+            <button class="btn btn-success" type="submit">Kaydet</button>
+        </div>
+    </div>
+}

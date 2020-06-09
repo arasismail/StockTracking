@@ -1,0 +1,44 @@
+﻿@model StockViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h1>Stok Düzenleme Formu</h1>
+<br />
+<br />
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="container">
+
+        <div class="form-group row">
+            @Html.LabelFor(x => x.stock.StockCode, "Stok Kodu", new { @class = "col-md-2 col-form-label" })
+            @Html.TextBoxFor(x => x.stock.StockCode, new { @class = "col-md-6 form-control", type = "number" })
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(x => x.stock.StockName, "Stok Name", new { @class = "col-md-2 col-form-label" })
+            @Html.TextBoxFor(x => x.stock.StockName, new { @class = "col-md-6 form-control" })
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(x => x.stock.Kdv, "Kdv", new { @class = "col-md-2 col-form-label" })
+            @Html.TextBoxFor(x => x.stock.Kdv, new { @class = "col-md-6 form-control", type = "number" })
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(x => x.stock.Price, "Fiyat", new { @class = "col-md-2 col-form-label" })
+            @Html.TextBoxFor(x => x.stock.Price, new { @class = "col-md-6 form-control" })
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(x => x.stock.Detail, "Açıklama", new { @class = "col-md-2 col-form-label" })
+            @Html.TextBoxFor(x => x.stock.Detail, new { @class = "col-md-6 form-control" })
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(x => x.stock.WarehouseCode, "Depo Kodu", new { @class = "col-md-2 col-form-label" })
+            @Html.DropDownListFor(x => x.stock.WarehouseCode, Model.selectLists, new { @class = "col-md-6 form-control" })
+        </div>
+        <br />
+        <div class="form-group row">
+            <button class="btn btn-success" type="submit">Kaydet</button>
+        </div>
+    </div>
+}

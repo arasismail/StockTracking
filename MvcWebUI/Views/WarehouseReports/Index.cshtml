@@ -1,0 +1,48 @@
+﻿@model WarehouseReportsListViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Depo Giriş/Çıkış Raporları</h1>
+<br />
+<a class="btn btn-success" href="/Warehouse/Index">Depo Giriş/Çıkış Ekle</a>
+<br />
+<br />
+
+<table class="table" id="tblWarehouse">
+    <thead>
+        <tr>
+            <th>Fiş Numarası</th>
+            <th>Depo Kodu</th>
+            <th>Stok Kodu</th>
+            <th>Giriş/Çıkış Miktarı</th>
+            <th>Operasyon Tipi</th>
+            <th>Kayıt Tarihi</th>
+            <th>Kayıt Yapan Kullanıcı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var warehouseOperation in Model.WarehouseOperations)
+        {
+            <tr>
+                <td>@warehouseOperation.VoucherNumber</td>
+                <td>@warehouseOperation.WarehouseCode</td>
+                <td>@warehouseOperation.StockCode</td>
+                <td>@warehouseOperation.Quantity</td>
+                @if (warehouseOperation.OperationType == true)
+                {
+                    <td>Giriş</td>
+                }
+                else
+                {
+                    <td>Çıkıç</td>
+                }
+                <td>@warehouseOperation.CreateDate.ToString("dd/MM/yyyy")</td>
+                <td>@warehouseOperation.UserId</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
